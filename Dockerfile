@@ -17,10 +17,10 @@ FROM ubuntu:focal
 
 # Ensure a SUDO command is available in the container
 RUN if type sudo 2>/dev/null; then \
-     echo "The sudo command already exists... Skipping."; \
+    echo "The sudo command already exists... Skipping."; \
     else \
-     echo "#!/bin/sh\n\${@}" > /usr/sbin/sudo; \
-     chmod +x /usr/sbin/sudo; \
+    echo "#!/bin/sh\n\${@}" > /usr/sbin/sudo; \
+    chmod +x /usr/sbin/sudo; \
     fi
 
 # Get dependencies
@@ -39,7 +39,7 @@ RUN mkdir /opt/aria_data_tools_Build; cd /opt/aria_data_tools_Build; cmake -DCMA
 RUN cd /opt/aria_data_tools_Build; make -j ; ctest -j;
 
 # Build python bindings
-RUN cd /opt/aria_data_tools/src; pip3 install --global-option=build_ext --global-option="-j8" .;
+RUN cd /opt/aria_data_tools/src; python -m pip install --global-option=build_ext --global-option="-j8" .;
 
 # Link shared Pangolin libraries
 RUN ldconfig;

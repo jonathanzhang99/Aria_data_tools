@@ -24,10 +24,14 @@ sudo apt-get install -y \
     libgtest-dev libgmock-dev libgoogle-glog-dev \
     libglew-dev libgl1-mesa-dev \
     libwayland-dev libxkbcommon-dev wayland-protocols \
-    libpython3-dev python3-pip;
+    python3.9 libpython3.9-dev python3-pip;
 sudo apt-get clean;
+
+# set python version 
+sudo ln -sf /usr/bin/python3.9  /usr/bin/python
+
 # Installing pybind11
-sudo pip3 install pybind11[global] numpy pyopengl;
+sudo python -m pip install pybind11[global] numpy pyopengl;
 
 # Install and compile libraries
 sh ./install_compile_3rd_party.sh
